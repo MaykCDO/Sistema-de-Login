@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import logo from '../../pages/img/logotipo.png';
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -36,8 +37,9 @@ const Signup = () => {
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
+      <C.img src={logo} alt="Logo"/>
       <C.Content>
+      <C.Label>Criar uma nova conta</C.Label>
         <Input
           type="email"
           placeholder="Digite seu E-mail"
