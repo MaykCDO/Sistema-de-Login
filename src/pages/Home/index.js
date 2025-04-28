@@ -72,12 +72,15 @@ const Home = () => {
   };
 
   const calcularEstatisticas = () => {
-    const valores = transactionsList.map((item) => parseFloat(item.amount));
-    if (valores.length === 0) return { media: 0, mediana: 0, moda: 0 };
+    const entradas = transactionsList
+      .filter((item) => !item.expense) // Filtra só as entradas
+      .map((item) => parseFloat(item.amount));
 
-    const media = valores.reduce((acc, val) => acc + val, 0) / valores.length;
+    if (entradas.length === 0) return { media: 0, mediana: 0, moda: 0 };
 
-    const valoresOrdenados = [...valores].sort((a, b) => a - b);
+    const media = entradas.reduce((acc, val) => acc + val, 0) / entradas.length;
+
+    const valoresOrdenados = [...entradas].sort((a, b) => a - b);
     const meio = Math.floor(valoresOrdenados.length / 2);
     const mediana =
       valoresOrdenados.length % 2 !== 0
@@ -85,7 +88,7 @@ const Home = () => {
         : (valoresOrdenados[meio - 1] + valoresOrdenados[meio]) / 2;
 
     const frequencia = {};
-    valores.forEach((valor) => {
+    entradas.forEach((valor) => {
       frequencia[valor] = (frequencia[valor] || 0) + 1;
     });
     const moda = Object.keys(frequencia).reduce((a, b) =>
@@ -119,7 +122,7 @@ const Home = () => {
     <C.Container>
       <C.Header>
         <C.Cabecalho>
-        <C.img src={logo} alt="Logo"/>
+          <C.img src={logo} alt="Logo" />
           <C.NavLinks>
             <Link to="/home">INÍCIO</Link>
           </C.NavLinks>
@@ -205,7 +208,7 @@ const Home = () => {
           </C.ListaRegistros>
 
           <C.Estatisticas>
-            <h3>Estatísticas dos Valores</h3>
+            <h3>Estatísticas dos Valores (Entradas)</h3>
             <p>Média: R$ {media.toFixed(2)}</p>
             <p>Mediana: R$ {mediana.toFixed(2)}</p>
             <p>Moda: R$ {parseFloat(moda).toFixed(2)}</p>
