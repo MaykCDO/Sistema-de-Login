@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import * as C from "./styles";
+import logo from '../../pages/img/logotipo.png';
 
 const Home = () => {
   const { logout, signout } = useAuth();
@@ -118,7 +119,7 @@ const Home = () => {
     <C.Container>
       <C.Header>
         <C.Cabecalho>
-          <img src="" alt="logo da barbearia" />
+        <C.img src={logo} alt="Logo"/>
           <C.NavLinks>
             <Link to="/home">INÍCIO</Link>
           </C.NavLinks>

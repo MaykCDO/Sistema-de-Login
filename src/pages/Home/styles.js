@@ -21,10 +21,6 @@ export const Cabecalho = styled.div`
   align-items: center;
   gap: 30px;
 
-  img {
-    height: 50px;
-    width: auto;
-  }
 `;
 
 export const NavLinks = styled.nav`
@@ -256,5 +252,10 @@ export const Resumo = styled.div`
     font-size: 20px;
     font-weight: bold;
   }
-`;
-
+`
+export const img = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+  `;
